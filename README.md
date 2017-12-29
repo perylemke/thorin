@@ -25,11 +25,11 @@ $ git clone https://github.com/perylemke/thorin.git
 $ cd thorin
 ```
 
-* Open a thorin.py and input a Digital Ocean API Key and Droplet ID
+* Open your ~/.bashrc or ~/.zshrc and input a Digital Ocean API Key and Droplet ID
 ```bash
-$ vim thorin.py
->> api_key = 'YOUR KEY HERE!'
->> droplet_id = 'YOUR DROPLET ID HERE!'
+$ vim ~/.bashrc # Or vim ~/.zshrc
+$ export DO_API_KEY=YOUR_KEY_HERE
+$ export DO_DROPLET_ID=YOUR_DROPLET_ID_HERE
 ```
 
 * Execute thorin.py
