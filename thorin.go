@@ -54,8 +54,8 @@ func main() {
 		panic(err)
 	}
 	if resp.StatusCode != http.StatusCreated {
-		fmt.Printf("Erro - Retornou com status: %v\n", resp.Status)
+		fmt.Printf("Error - Status returned: %v\n", resp.Status)
+	} else {
+		fmt.Printf("Success - Status returned: %v\n", resp.Status)
 	}
-
-	fmt.Println(resp.Status)
 }
