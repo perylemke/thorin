@@ -52,9 +52,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	if resp.StatusCode != http.StatusCreated {
 		fmt.Printf("Error - Status returned: %v\n", resp.Status)
-	} else {
-		fmt.Printf("Success - Status returned: %v\n", resp.Status)
+		os.Exit(1)
 	}
+
+	fmt.Printf("Success - Status returned: %v\n", resp.Status)
+
 }
