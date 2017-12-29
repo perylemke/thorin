@@ -24,8 +24,7 @@ func main() {
 		panic(err)
 	}
 
-	now := time.Now()
-	dateTime := now.Format("02012006_150406")
+	dateTime := time.Now().Format("02012006_150406")
 	snapshotName := dropletName + "_" + dateTime
 
 	apiCreateSnapshot := "https://api.digitalocean.com/v2/droplets/" + string(dropletID) + "/actions"
