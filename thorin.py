@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import sys
 import requests
 import json
@@ -7,8 +8,8 @@ import datetime
 
 def create_snapshot():
     # Digital Ocean variables
-    api_key = ''
-    droplet_id = ''
+    api_key = os.environ['DO_API_KEY']
+    droplet_id = os.environ['DO_DROPLET_ID']
     snapshot_name = 'THORIN_' + datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # API URL
