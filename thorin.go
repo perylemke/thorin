@@ -21,7 +21,8 @@ func main() {
 
 	dropletName, err := os.Hostname()
 	if err != nil {
-		panic(err)
+		fmt.Printf("error trying to get hostname: %v", err)
+		os.Exit(1)
 	}
 
 	dateTime := time.Now().Format("02012006_150406")
@@ -36,13 +37,15 @@ func main() {
 
 	payloadBytes, err := json.Marshal(data)
 	if err != nil {
-		panic(err)
+		fmt.Printf("error while marshal payload's json: %v", err)
+		os.Exit(1)
 	}
 
 	body := bytes.NewReader(payloadBytes)
 	req, err := http.NewRequest("POST", apiCreateSnapshot, body)
 	if err != nil {
-		panic(err)
+		fmt.Printf("error while preparing the request: %v", err)
+		os.Exit(1)
 	}
 
 	req.Header.Set("Content-Type", "application/json")
@@ -50,14 +53,15 @@ func main() {
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		panic(err)
-	}
-
-	if resp.StatusCode != http.StatusCreated {
-		fmt.Printf("Error - Status returned: %v\n", resp.Status)
+		fmt.Printf("service response contains error %v", err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("Success - Status returned: %v\n", resp.Status)
+	if resp.StatusCode != http.StatusCreated {
+		fmt.Printf("returned status is not %d: %d", http.StatusCreated, resp.StatusCode)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Success! - Status returned: %v\n", resp.Status)
 
 }
